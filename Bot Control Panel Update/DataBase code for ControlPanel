@@ -1,0 +1,9 @@
+DROP DATABASE IF EXISTS cp;
+CREATE DATABASE cp;
+
+CREATE TABLE rd (
+   ID int PRIMARY KEY AUTO_INCREMENT,
+   Direction varchar(255) DEFAULT "S"
+);
+
+

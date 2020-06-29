@@ -1,0 +1,622 @@
+<?php
+
+include("dbConn.php");
+session_start();
+
+
+if($_SERVER['REQUEST_METHOD'] == "POST") {
+
+		$direction = "";
+		$destince = 0;
+		if ($_POST['ex1'])
+		{
+		 $direction = "F";
+		 $destince = (int)$_POST['ex1'];
+		}
+		
+		elseif ($_POST['ex2'])
+		{
+		 $direction = "B";
+		 $destince = (int)$_POST['ex2'];
+		}
+		
+		elseif ($_POST['ex3'])
+		{
+		 $direction = "R";
+		 $destince = (int)$_POST['ex3'];
+		}
+		
+		elseif ($_POST['ex4'])
+		{
+		 $direction = "L";
+		 $destince = (int)$_POST['ex4'];
+		}
+		
+		/*$destinceText = mysqli_real_escape_string($conn, $_POST['ex3']);
+		$destince = (int)$destinceText;*/
+   		
+		
+        $sql = "INSERT INTO rd (Dist,Direction) values ($destince,'$direction')";
+		$conn->query($sql);
+
+		
+		
+		/*	
+		if ($conn->query($sql) === TRUE) {
+		echo "Record updated successfully";
+		
+		} 
+		else {
+		echo "Error updating record: " . mysqli_error($conn);
+		}
+		*/
+	
+    }
+	
+	
+	
+	
+
+	
+	mysqli_close($conn);
+?>
+
+
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<style>
+
+
+body{
+  background-color:#FFFAF0;
+  }
+
+table, td {
+  background-color: white;
+  border: 1px solid black;
+  }
+
+
+
+.F {
+ position: absolute;
+  top: 130px;
+  left: 380px;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  color: black;
+  font-size: 16px;
+  padding: 15px 40px;
+  text-align: center;
+}
+
+.B {
+ position: absolute;
+  top: 200px;
+  left: 380px;
+  transform: translate(-50%, -50%);s
+  -ms-transform: translate(-50%, -50%);
+  color: black;
+  font-size: 16px;
+  padding: 15px 40px;
+  text-align: center;
+}
+
+.R {
+ position: absolute;
+  top: 270px;
+  left: 380px;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  color: black;
+  font-size: 16px;
+  padding: 15px 40px;
+  text-align: center;
+}
+
+.L {
+ position: absolute;
+  top: 340px;
+  left: 380px;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  color: black;
+  font-size: 16px;
+  padding: 15px 40px;
+  text-align: center;
+}
+
+.Forward .btn {
+  position: absolute;
+  top: 130px;
+  left: 150px;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #FFFFFF;
+  color: black;
+  font-size: 16px;
+  padding: 16px 60px;
+  border: 1px solid black;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.Forward .btn:hover {
+  background-color: PapayaWhip;
+  color: black;
+}
+
+
+
+
+.Backward .btn {
+  position: absolute;
+  top: 200px;
+  left: 150px;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #FFFFFF;
+  color: black;
+  font-size: 16px;
+  padding: 16px 55px;
+  border: 1px solid black;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.Backward .btn:hover {
+  background-color: PapayaWhip;
+  color: black;
+}
+
+
+
+.Right .btn {
+  position: absolute;
+  top: 270px;
+  left: 150px;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #FFFFFF;
+  color: black;
+  font-size: 16px;
+  padding: 16px 58px;
+  border: 1px solid black;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.Right .btn:hover {
+  background-color: PapayaWhip;
+  color: black;
+}
+
+
+
+
+.Left .btn {
+  position: absolute;
+  top: 340px;
+  left: 150px;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #FFFFFF;
+  color: black;
+  font-size: 16px;
+  padding: 16px 62px;
+  border: 1px solid black;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.Left .btn:hover {
+  background-color: PapayaWhip;
+  color: black;
+}
+
+.delete .btn {
+  position: absolute;
+  top: 410px;
+  left: 120px;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #FFFFFF;
+  color: black;
+  font-size: 16px;
+  padding: 16px 55px;
+  border: 1px solid black;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.delete .btn:hover {
+  background-color: RED;
+  color: BLACK;
+}
+
+.save .btn {
+  position: absolute;
+  top: 410px;
+  left: 310px;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #FFFFFF;
+  color: black;
+  font-size: 16px;
+  padding: 16px 65px;
+  border: 1px solid black;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.save .btn:hover {
+  background-color: GRAY;
+  color: white;
+}
+
+
+.start .btn {
+  position: absolute;
+  top: 410px;
+  left: 505px;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #FFFFFF;
+  color: black;
+  font-size: 16px;
+  padding: 16px 65px;
+  border: 1px solid black;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.start .btn:hover {
+  background-color: green;
+  color: white;
+}
+</style>
+</head>
+<body>
+
+<iframe name="votar" style="display:none;"></iframe>
+<form method="post" class="form" role="F" target="votar">
+<div class="Forward">
+  <button onclick="fArrow(),myFunction()" class="btn">Up</button>
+</div>
+
+<input class="F" type="text" id="fValue" name="ex1" value="10" spellcheck="false" maxlength="16" style="width: 166px;">
+</form>
+
+
+
+<iframe name="votar" style="display:none;"></iframe>
+<form method="post" class="form" role="B" target="votar">
+<div class="Backward">
+  <button onclick="bArrow(),myFunction()" class="btn">Down</button>
+</div>
+
+<input class="B" type="text" id="bValue" name="ex2" value="5" spellcheck="false" maxlength="16" style="width: 166px;">
+</form>
+
+
+<iframe name="votar" style="display:none;"></iframe>
+<form method="post" class="form" role="R" target="votar">
+<div class="Right">
+  <button onclick="rArrow(),myFunction()"  class="btn">Right</button>
+</div>
+
+<input class="R" type="text" id="rValue" name="ex3" value="3" spellcheck="false" maxlength="16" style="width: 166px;">
+</form>
+
+<iframe name="votar" style="display:none;"></iframe>
+<form method="post" class="form" role="L" target="votar">
+<div class="Left">
+  <button onclick="lArrow(),myFunction()" class="btn">Left</button>
+</div>
+<input class="L" type="text" id="lValue" name="ex4" value="1" spellcheck="false" maxlength="16" style="width: 166px;">
+</form>
+
+
+
+<div class="delete">
+  <button class="btn">delete</button>
+</div>
+
+<div class="save">
+  <button class="btn">save</button>
+</div>
+
+<div class="start">
+  <button class="btn">start</button>
+</div>
+
+
+
+
+<div class="seerde" style="position:absolute;top:0;left:100px;width:800px; height:750px; margin-left:40%;">
+
+</div>
+
+
+
+<table id="myTable" style="width:300px; height:100px; position:absolute; top:475px; left:150px; border-collapse:collapse; border:1px solid #dddddd; text-align: center;
+  padding: 8px; border-spacing: 0px; table-layout: fixed;">
+  <tr style="height:45px; width:150px">
+    <td></td>
+    <td></td>
+  </tr>
+  <tr style="height:45px; width:150px">
+    <td></td>
+    <td></td>
+  </tr>
+</table>
+
+<br>
+
+
+
+<script>
+
+
+var topp = 510;
+var left = 150;
+var mov = "";
+var r = 0;
+var siz = 2;
+var T = "";
+var fieldValue = "";
+
+function myFunction() {
+  if (mov == "F") {T = "Up"; fieldValue ="fValue"}
+  if (mov == "B") {T = "Down"; fieldValue ="bValue"}
+  if (mov == "R") {T = "Right"; fieldValue ="rValue"}
+  if (mov == "L") {T = "Left"; fieldValue ="lValue"}
+
+  var x = document.getElementById("myTable");
+  var y = document.getElementById(`${fieldValue}`).value;
+  x.rows[r].cells[0].innerHTML = `${T}`
+  x.rows[r].cells[1].innerHTML = `${y}`
+  var row = x.insertRow(siz);
+  row.style.cssText = `height:45px; width:150px;`                                                                                                                            
+  row.insertCell(0);
+  row.insertCell(1);
+  siz = siz + 1;
+  r = r + 1;
+  
+  }
+  
+  
+  
+  
+  function fArrow()
+  {
+  if (mov == "R")
+  {
+  left = left + 80;
+  topp = topp - 75;
+  var seerde = document.querySelector(".seerde")
+  var arrow = document.createElement("IMG")
+  arrow.setAttribute("src","arrow.png")
+  arrow.style.cssText = `position: absolute; top: ${topp}px; left: ${left}px; height:50px; width:150px; -ms-transform: rotate(-90deg); transform: rotate(-90deg);`
+  seerde.appendChild(arrow)
+  mov = "F";
+  }
+  
+  else if (mov == "L")
+  {
+  left = left - 75;
+  topp = topp - 75;
+  var seerde = document.querySelector(".seerde")
+  var arrow = document.createElement("IMG")
+  arrow.setAttribute("src","arrow.png")
+  arrow.style.cssText = `position: absolute; top: ${topp}px; left: ${left}px; height:50px; width:150px; -ms-transform: rotate(-90deg); transform: rotate(-90deg);`
+  seerde.appendChild(arrow)
+  mov = "F";
+  }
+ 
+  else if (mov == "B")
+  {
+  
+  left = left + 75;
+  topp = topp - 20;
+  var seerde = document.querySelector(".seerde")
+  var arrow = document.createElement("IMG")
+  arrow.setAttribute("src","arrow.png")
+  arrow.style.cssText = `position: absolute; top: ${topp}px; left: ${left}px; height:50px; width:150px; -ms-transform: rotate(-90deg); transform: rotate(-90deg);`
+  seerde.appendChild(arrow)
+  mov = "F";
+  }
+  
+  else 
+  {
+  left = left;
+  topp = topp - 150;
+  var seerde = document.querySelector(".seerde")
+  var arrow = document.createElement("IMG")
+  arrow.setAttribute("src","arrow.png")
+  arrow.style.cssText = `position: absolute; top: ${topp}px; left: ${left}px; height:50px; width:150px; -ms-transform: rotate(-90deg); transform: rotate(-90deg);`
+  seerde.appendChild(arrow)
+  mov = "F";
+  }
+
+  
+
+}
+
+function rArrow()
+  {
+  
+  if (mov == "F")
+  {
+  left = left + 75;
+  topp = topp - 75;
+  var seerde = document.querySelector(".seerde")
+  var arrow = document.createElement("IMG")
+  arrow.setAttribute("src","arrow.png")
+  arrow.style.cssText = `position: absolute; top: ${topp}px; left: ${left}px; height:50px; width:150px;`
+  seerde.appendChild(arrow)
+  mov = "R";
+  }
+  
+  else if (mov == "L")
+  {
+  left = left;
+  topp = topp - 75;
+  var seerde = document.querySelector(".seerde")
+  var arrow = document.createElement("IMG")
+  arrow.setAttribute("src","arrow.png")
+  arrow.style.cssText = `position: absolute; top: ${topp}px; left: ${left}px; height:50px; width:150px;`
+  seerde.appendChild(arrow)
+  mov = "R";
+  }
+ 
+  else if (mov == "B")
+  {
+  
+  left = left + 125;
+  topp = topp + 75;
+  var seerde = document.querySelector(".seerde")
+  var arrow = document.createElement("IMG")
+  arrow.setAttribute("src","arrow.png")
+  arrow.style.cssText = `position: absolute; top: ${topp}px; left: ${left}px; height:50px; width:150px;`
+  seerde.appendChild(arrow)
+  mov = "R";
+  }
+  
+  else 
+  {
+  left = left + 150;
+  var seerde = document.querySelector(".seerde")
+  var arrow = document.createElement("IMG")
+  arrow.setAttribute("src","arrow.png")
+  arrow.style.cssText = `position: absolute; top: ${topp}px; left: ${left}px; height:50px; width:150px; `
+  seerde.appendChild(arrow)
+  mov = "R";
+  }
+  
+  
+  
+
+}
+
+
+function lArrow()
+  {
+  if (mov == "F")
+  {
+  left = left - 100;
+  topp = topp - 75;
+  var seerde = document.querySelector(".seerde")
+  var arrow = document.createElement("IMG")
+  arrow.setAttribute("src","arrow.png")
+  arrow.style.cssText = `position: absolute; top: ${topp}px; left: ${left}px; height:50px; width:150px; -ms-transform: rotate(-180deg); transform: rotate(-180deg);`
+  seerde.appendChild(arrow)
+  mov = "L";
+  }
+  
+  else if (mov == "R")
+  {
+  left = left - 25;
+  topp = topp - 75;
+  var seerde = document.querySelector(".seerde")
+  var arrow = document.createElement("IMG")
+  arrow.setAttribute("src","arrow.png")
+  arrow.style.cssText = `position: absolute; top: ${topp}px; left: ${left}px; height:50px; width:150px; -ms-transform: rotate(-180deg); transform: rotate(-180deg);`
+  seerde.appendChild(arrow)
+  mov = "L";
+  }
+ 
+  else if (mov == "B")
+  {
+  topp = topp + 75;
+  left = left - 100;
+  var seerde = document.querySelector(".seerde")
+  var arrow = document.createElement("IMG")
+  arrow.setAttribute("src","arrow.png")
+  arrow.style.cssText = `position: absolute; top: ${topp}px; left: ${left}px; height:50px; width:150px; -ms-transform: rotate(-180deg); transform: rotate(-180deg);`
+  seerde.appendChild(arrow)
+  mov = "L";
+  }
+  
+  else 
+  {
+  left = left - 150;
+  var seerde = document.querySelector(".seerde")
+  var arrow = document.createElement("IMG")
+  arrow.setAttribute("src","arrow.png")
+  arrow.style.cssText = `position: absolute; top: ${topp}px; left: ${left}px; height:50px; width:150px; -ms-transform: rotate(-180deg); transform: rotate(-180deg);`
+  seerde.appendChild(arrow)
+  mov = "L";
+  }
+
+}
+
+function bArrow()
+  {
+  
+  if (mov == "F")
+  {
+  left = left + 100;
+  topp = topp + 15;
+  var seerde = document.querySelector(".seerde")
+  var arrow = document.createElement("IMG")
+  arrow.setAttribute("src","arrow.png")
+  arrow.style.cssText = `position: absolute; top: ${topp}px; left: ${left}px; height:50px; width:150px; -ms-transform: rotate(900deg); transform: rotate(90deg);`
+  seerde.appendChild(arrow)
+  mov = "B";
+  }
+  
+  else if (mov == "R")
+  {
+  left = left + 75;
+  topp = topp + 75;
+  var seerde = document.querySelector(".seerde")
+  var arrow = document.createElement("IMG")
+  arrow.setAttribute("src","arrow.png")
+  arrow.style.cssText = `position: absolute; top: ${topp}px; left: ${left}px; height:50px; width:150px; -ms-transform: rotate(900deg); transform: rotate(90deg);`
+  seerde.appendChild(arrow)
+  mov = "B";
+  }
+ 
+  else if (mov == "L")
+  {
+  topp = topp + 75;
+  left = left - 75;
+  var seerde = document.querySelector(".seerde")
+  var arrow = document.createElement("IMG")
+  arrow.setAttribute("src","arrow.png")
+  arrow.style.cssText = `position: absolute; top: ${topp}px; left: ${left}px; height:50px; width:150px; -ms-transform: rotate(900deg); transform: rotate(90deg);`
+  seerde.appendChild(arrow)
+  mov = "B";
+  }
+  
+  else 
+  {
+  topp = topp + 175;
+  var seerde = document.querySelector(".seerde")
+  var arrow = document.createElement("IMG")
+  arrow.setAttribute("src","arrow.png")
+  arrow.style.cssText = `position: absolute; top: ${topp}px; left: ${left}px; height:50px; width:150px; -ms-transform: rotate(900deg); transform: rotate(90deg);`
+  seerde.appendChild(arrow)
+  mov = "B";
+  }
+
+}
+
+</script>
+
+</body>
+
+</html>

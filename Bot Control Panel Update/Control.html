@@ -1,6 +1,4 @@
-<!DOCTYPE html>
 <html>
-<head>
 <base target="_blank">
 <style>
 
@@ -129,31 +127,46 @@ body{
 }
 
 </style>
-</head>
+
+
 <body>
 
+<p id="demo"></p>
 
+
+
+<form action="control.php" method="post">
 <div class="Forward">
-  <button class="btn" onclick="location.href='F.htm';"> Forward </button>
+  <button  name="F" class="btn"> Forward </button>  
 </div>
+</form>
 
+
+<form action="control.php" method="post">
 <div class="Backward">
-  <button class="btn" onclick="location.href='B.htm';">Backward</button>
+  <button  name="B" class="btn">Backward</button>
 </div>
+</form>
 
+<form action="control.php" method="post">
 <div class="STOP">
-  <button class="btn" onclick="location.href='STOP.htm';" >STOP</button>
+  <button  name="S" class="btn" >STOP</button>
 </div>
+</form>
 
+<form action="control.php" method="post">
 <div class="Right">
-  <button class="btn" onclick="location.href='R.htm';">Right</button>
+  <button  name="R" class="btn">Right</button>
 </div>
+</form>
 
+<form action="control.php" method="post">
 <div class="Left">
-  <button class="btn" onclick="location.href='L.htm';">Left</button>
+  <button name="L" class="btn">Left</button>
 </div>
+</form>
 
+<script>
 
+</script>
 
-</body>
-</html>

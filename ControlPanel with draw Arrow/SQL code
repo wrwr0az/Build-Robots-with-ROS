@@ -1,0 +1,15 @@
+DROP DATABASE IF EXISTS cp;
+CREATE DATABASE cp;
+
+CREATE TABLE rd (
+   ID int PRIMARY KEY AUTO_INCREMENT,
+   Direction varchar(255),
+   Dist varchar(255)
+);
+
+CREATE TABLE position (
+   ID int PRIMARY KEY AUTO_INCREMENT,
+   x int
+);
+
+INSERT INTO position (x) value (1);

@@ -34,56 +34,20 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 		
 
    		
-		$getValue = "SELECT x FROM position WHERE id =1";
-		$getx = $conn->query($getValue);
-		
-		$getx = $getx -> fetch_assoc();
-		$x = $getx["x"];
-		$x = $x + 1;
+
 		
         $sql = "INSERT INTO rd (Direction,Dist) values ('$direction',$destince)";
 		$insertoDB = $conn->query($sql);
 		
 
-		$setValue = "UPDATE position SET x = $x WHERE id =1";
-		$setx = $conn->query($setValue);
-		
-		
+	
 	
     }
 	
-	elseif($_SERVER['REQUEST_METHOD'] == "GET") {
-		
-		$getValue = "SELECT x FROM position WHERE id =1";
-		$getx = $conn->query($getValue);
-		
-		$getx = $getx -> fetch_assoc();
-		$x = $getx["x"];
-		$x = $x -1;
-		$sqlDelet = "DELETE FROM rd WHERE id = $x";
-		$conn->query($sqlDelet);
-		
-		$x = $x + 1;
-		$setValue = "UPDATE position SET x = $x WHERE id =1";
-		$setx = $conn->query($setValue);
 	
-	}
 	
-	else {
-		
-		$getValue = "SELECT x FROM position WHERE id =1";
-		$getx = $conn->query($getValue);
-		
-		$getx = $getx -> fetch_assoc();
-		$x = $getx["x"];
-		$x = $x + 1;
-		
-		$sqlSave = "INSERT INTO rd (Direction,Dist) values ('S',0)";
-		$conn->query($sqlSave);
-		
-		$setValue = "UPDATE position SET x = $x WHERE id =1";
-		$setx = $conn->query($setValue);
-	}
+	
+
 	
 	mysqli_close($conn);
 ?>
@@ -118,9 +82,7 @@ table, td {
   -ms-transform: translate(-50%, -50%);
   color: black;
   font-size: 16px;
-  width: 150px;
-  height: 50px;
-  
+  padding: 15px 40px;
   text-align: center;
 }
 
@@ -132,8 +94,7 @@ table, td {
   -ms-transform: translate(-50%, -50%);
   color: black;
   font-size: 16px;
-  width: 150px;
-  height: 50px;
+  padding: 15px 40px;
   text-align: center;
 }
 
@@ -145,8 +106,7 @@ table, td {
   -ms-transform: translate(-50%, -50%);
   color: black;
   font-size: 16px;
-  width: 150px;
-  height: 50px;
+  padding: 15px 40px;
   text-align: center;
 }
 
@@ -158,14 +118,12 @@ table, td {
   -ms-transform: translate(-50%, -50%);
   color: black;
   font-size: 16px;
-  width: 150px;
-  height: 50px;
+  padding: 15px 40px;
   text-align: center;
 }
 
 .Forward .btn {
   position: absolute;
-  border:1px solid black;
   top: 130px;
   left: 150px;
   transform: translate(-50%, -50%);
@@ -173,8 +131,8 @@ table, td {
   background-color: #FFFFFF;
   color: black;
   font-size: 16px;
-  width: 150px;
-  height: 50px;
+  padding: 16px 60px;
+  border: 1px solid black;
   cursor: pointer;
   border-radius: 5px;
   text-align: center;
@@ -197,8 +155,7 @@ table, td {
   background-color: #FFFFFF;
   color: black;
   font-size: 16px;
-  width: 150px;
-  height: 50px;
+  padding: 16px 55px;
   border: 1px solid black;
   cursor: pointer;
   border-radius: 5px;
@@ -221,8 +178,7 @@ table, td {
   background-color: #FFFFFF;
   color: black;
   font-size: 16px;
-  width: 150px;
-  height: 50px;
+  padding: 16px 58px;
   border: 1px solid black;
   cursor: pointer;
   border-radius: 5px;
@@ -246,8 +202,7 @@ table, td {
   background-color: #FFFFFF;
   color: black;
   font-size: 16px;
-  width: 150px;
-  height: 50px;
+  padding: 16px 62px;
   border: 1px solid black;
   cursor: pointer;
   border-radius: 5px;
@@ -259,10 +214,10 @@ table, td {
   color: black;
 }
 
-  input[id ="D"]{
-  position:absolute;
-  top: 450px;
-  left:180px;
+.delete .btn {
+  position: absolute;
+  top: 410px;
+  left: 180px;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   background-color: #FFFFFF;
@@ -273,20 +228,17 @@ table, td {
   cursor: pointer;
   border-radius: 5px;
   text-align: center;
-  
-  }
-  
-  
-  input[id="D"]:hover {
+}
+
+.delete .btn:hover {
   background-color: RED;
   color: BLACK;
 }
 
-
-  input[id ="S"]{
-  position:absolute;
-  top: 450px;
-  left:380px;
+.save .btn {
+  position: absolute;
+  top: 410px;
+  left: 430px;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   background-color: #FFFFFF;
@@ -297,12 +249,10 @@ table, td {
   cursor: pointer;
   border-radius: 5px;
   text-align: center;
-  
-  }
- 
+}
 
-  input[id="S"]:hover {
-  background-color: Green;
+.save .btn:hover {
+  background-color: GRAY;
   color: white;
 }
 
@@ -333,9 +283,8 @@ table, td {
 
 <iframe name="votar" style="display:none;"></iframe>
 <form method="post" class="form" role="F" target="votar">
-
 <div class="Forward">
-  <button name = "F" onclick="camp(),myFunction()" class="btn">Forward</button>
+  <button onclick="fArrow(),myFunction()" class="btn">Up</button>
 </div>
 
 <input class="F" type="text" id="fValue" name="ex1" value="10" spellcheck="false" maxlength="16" style="width: 166px;">
@@ -345,59 +294,41 @@ table, td {
 
 <iframe name="votar" style="display:none;"></iframe>
 <form method="post" class="form" role="B" target="votar">
-
 <div class="Backward">
-  <button name = "B" onclick="camp(),myFunction()" class="btn">Backward</button>
+  <button onclick="bArrow(),myFunction()" class="btn">Down</button>
 </div>
 
 <input class="B" type="text" id="bValue" name="ex2" value="5" spellcheck="false" maxlength="16" style="width: 166px;">
 </form>
 
 
-
 <iframe name="votar" style="display:none;"></iframe>
 <form method="post" class="form" role="R" target="votar">
-
 <div class="Right">
-  <button name = "R" onclick="camp(),myFunction()"  class="btn">Right</button>
+  <button onclick="rArrow(),myFunction()"  class="btn">Right</button>
 </div>
 
 <input class="R" type="text" id="rValue" name="ex3" value="3" spellcheck="false" maxlength="16" style="width: 166px;">
 </form>
 
-
-
 <iframe name="votar" style="display:none;"></iframe>
 <form method="post" class="form" role="L" target="votar">
-
 <div class="Left">
-  <button name = "L" onclick="camp(),myFunction()" class="btn">Left</button>
+  <button onclick="lArrow(),myFunction()" class="btn">Left</button>
 </div>
-
 <input class="L" type="text" id="lValue" name="ex4" value="1" spellcheck="false" maxlength="16" style="width: 166px;">
 </form>
 
-	
-	
-	
 
-<iframe name="votar" style="display:none;"></iframe>
-<form method = "GET" class="form" role="L" target="votar">
 
 <div class="delete">
-   <input type="submit" onclick = "Deleteitem()" id = "D" name="Delete" class="button" value="Delete" /> 
+  <button onclick="DeletFunction()" class="btn">delete</button>
 </div>
-</form>
-
-
-
-<iframe name="votar" style="display:none;"></iframe>
-<form method="" class="form" role="L" target="votar">
 
 <div class="save">
-  <input type="submit" id ="S" name="Save" class="button" value="Save" /> 
+  <button onclick="SaveFunction()" class="btn">save</button>
 </div>
-</form>
+
 
 
 
@@ -410,7 +341,7 @@ table, td {
 
 
 
-<table id="myTable" style="width:300px; height:100px; position:absolute; top:505px; left:150px; border-collapse:collapse; border:1px solid #dddddd; text-align: center;
+<table id="myTable" style="width:300px; height:100px; position:absolute; top:475px; left:150px; border-collapse:collapse; border:1px solid #dddddd; text-align: center;
   padding: 8px; border-spacing: 0px; table-layout: fixed;">
   <tr style="height:45px; width:150px">
     <td></td>
@@ -436,10 +367,6 @@ var r = 0;
 var siz = 2;
 var T = "";
 var fieldValue = "";
-var campus = "N";
-
-
-
 
 function myFunction() {
   if (mov == "F") {T = "Up"; fieldValue ="fValue"}
@@ -460,200 +387,221 @@ function myFunction() {
   
   }
   
-  function Deleteitem()
+  
+  
+  
+  function fArrow()
   {
-	if (r < 1) {alert("The Table is Empty");}
-	else {
-	r = r - 1;
-	document.getElementById("myTable").deleteRow(r);
-	}
-  }
-  
-  
-  
-  function camp()
+  if (mov == "R")
   {
-	var buttonDirection = event.target.name;
-	console.log(buttonDirection);
-	if (campus == "N")
-	
-	{
-		if (buttonDirection == "L")
-		{
-			campus = "W";
-			lArrow(-50,-125);
-			
-		}
-		
-		else if (buttonDirection == "R")
-		{
-			campus = "E";
-			rArrow(-50,125);
-		}
-		
-		else if (buttonDirection == "F")
-		{
-			
-			fArrow(-150,0);	
-		}
-		
-		else if (buttonDirection == "B")
-		{
-			campus = "S";
-			bArrow(175,-5);
-		}
-		else 
-		fArrow(75,0);
-		
-	}
-	
-	else if (campus == "E")
-	
-	{
-		if (buttonDirection == "R")
-		{
-			campus = "S";
-			bArrow(110,75);
-		}
-		
-		else if (buttonDirection == "L")
-		{
-			campus = "N";
-			fArrow(-100,100);
-		}
-		
-		else if (buttonDirection == "F")
-		{
-			
-			rArrow(0,150);
-		}
-		
-		else if (buttonDirection == "B")
-		{
-			campus = "W";
-			lArrow(-5,-175);
-		}
-		
-		
-	}
-	
-	
-	else if (campus == "W")
-	
-	{
-		if (buttonDirection == "R")
-		{
-			campus = "N";
-			fArrow(-75,-100);
-		}
-		
-		else if (buttonDirection == "L")
-		{
-			campus = "S";
-			bArrow(100,-75);
-		}
-		
-		else if (buttonDirection == "F")
-		{
-			
-			lArrow(0,-150);
-		}
-		
-		else if (buttonDirection == "B")
-		{
-			campus = "E";
-			rArrow(6,175);
-		}
-	}
-	
-	
-	else if (campus == "S")
-	
-	{
-		if (buttonDirection == "R")
-		{
-			campus = "W";
-			lArrow(75,-85);
-		}
-		
-		else if (buttonDirection == "L")
-		{
-			campus = "E";
-			rArrow(75,95);
-		}
-		
-		else if (buttonDirection == "F")
-		{
-			
-			bArrow(150,0);
-		}
-		
-		else if (buttonDirection == "B")
-		{
-			campus = "N";
-			fArrow(-175,5);
-		}
-	}
-  
-  }
-  
-  function fArrow(newTop = 0,newLeft = 0)
-  {
-  
-  left = left + newLeft;
-  topp = topp + newTop;
+  left = left + 80;
+  topp = topp - 75;
   var seerde = document.querySelector(".seerde")
   var arrow = document.createElement("IMG")
   arrow.setAttribute("src","arrow.png")
   arrow.style.cssText = `position: absolute; top: ${topp}px; left: ${left}px; height:50px; width:150px; -ms-transform: rotate(-90deg); transform: rotate(-90deg);`
   seerde.appendChild(arrow)
   mov = "F";
+  }
   
+  else if (mov == "L")
+  {
+  left = left - 75;
+  topp = topp - 75;
+  var seerde = document.querySelector(".seerde")
+  var arrow = document.createElement("IMG")
+  arrow.setAttribute("src","arrow.png")
+  arrow.style.cssText = `position: absolute; top: ${topp}px; left: ${left}px; height:50px; width:150px; -ms-transform: rotate(-90deg); transform: rotate(-90deg);`
+  seerde.appendChild(arrow)
+  mov = "F";
+  }
+ 
+  else if (mov == "B")
+  {
+  
+  left = left + 75;
+  topp = topp - 20;
+  var seerde = document.querySelector(".seerde")
+  var arrow = document.createElement("IMG")
+  arrow.setAttribute("src","arrow.png")
+  arrow.style.cssText = `position: absolute; top: ${topp}px; left: ${left}px; height:50px; width:150px; -ms-transform: rotate(-90deg); transform: rotate(-90deg);`
+  seerde.appendChild(arrow)
+  mov = "F";
+  }
+  
+  else 
+  {
+  left = left;
+  topp = topp - 150;
+  var seerde = document.querySelector(".seerde")
+  var arrow = document.createElement("IMG")
+  arrow.setAttribute("src","arrow.png")
+  arrow.style.cssText = `position: absolute; top: ${topp}px; left: ${left}px; height:50px; width:150px; -ms-transform: rotate(-90deg); transform: rotate(-90deg);`
+  seerde.appendChild(arrow)
+  mov = "F";
+  }
 
   
 
 }
 
-function rArrow(newTop = 0,newLeft = 0)
+function rArrow()
   {
-  topp = topp + newTop;
-  left = left + newLeft;
+  
+  if (mov == "F")
+  {
+  left = left + 75;
+  topp = topp - 75;
+  var seerde = document.querySelector(".seerde")
+  var arrow = document.createElement("IMG")
+  arrow.setAttribute("src","arrow.png")
+  arrow.style.cssText = `position: absolute; top: ${topp}px; left: ${left}px; height:50px; width:150px;`
+  seerde.appendChild(arrow)
+  mov = "R";
+  }
+  
+  else if (mov == "L")
+  {
+  left = left;
+  topp = topp - 75;
+  var seerde = document.querySelector(".seerde")
+  var arrow = document.createElement("IMG")
+  arrow.setAttribute("src","arrow.png")
+  arrow.style.cssText = `position: absolute; top: ${topp}px; left: ${left}px; height:50px; width:150px;`
+  seerde.appendChild(arrow)
+  mov = "R";
+  }
+ 
+  else if (mov == "B")
+  {
+  
+  left = left + 125;
+  topp = topp + 75;
+  var seerde = document.querySelector(".seerde")
+  var arrow = document.createElement("IMG")
+  arrow.setAttribute("src","arrow.png")
+  arrow.style.cssText = `position: absolute; top: ${topp}px; left: ${left}px; height:50px; width:150px;`
+  seerde.appendChild(arrow)
+  mov = "R";
+  }
+  
+  else 
+  {
+  left = left + 150;
   var seerde = document.querySelector(".seerde")
   var arrow = document.createElement("IMG")
   arrow.setAttribute("src","arrow.png")
   arrow.style.cssText = `position: absolute; top: ${topp}px; left: ${left}px; height:50px; width:150px; `
   seerde.appendChild(arrow)
   mov = "R";
- 
+  }
+  
+  
+  
+
 }
 
 
-function lArrow(newTop = 0,newLeft = 0)
+function lArrow()
   {
-  topp = topp + newTop;
-  left = left + newLeft;
+  if (mov == "F")
+  {
+  left = left - 100;
+  topp = topp - 75;
   var seerde = document.querySelector(".seerde")
   var arrow = document.createElement("IMG")
   arrow.setAttribute("src","arrow.png")
   arrow.style.cssText = `position: absolute; top: ${topp}px; left: ${left}px; height:50px; width:150px; -ms-transform: rotate(-180deg); transform: rotate(-180deg);`
   seerde.appendChild(arrow)
   mov = "L";
+  }
   
-
-}
-
-function bArrow(newTop = 0,newLeft = 0)
+  else if (mov == "R")
   {
-  
-  topp = topp + newTop;
-  left = left + newLeft;
+  left = left - 25;
+  topp = topp - 75;
   var seerde = document.querySelector(".seerde")
   var arrow = document.createElement("IMG")
   arrow.setAttribute("src","arrow.png")
-  arrow.style.cssText = `position: absolute; top: ${topp}px; left: ${left}px; height:50px; width:150px; -ms-transform: rotate(90deg); transform: rotate(90deg);`
+  arrow.style.cssText = `position: absolute; top: ${topp}px; left: ${left}px; height:50px; width:150px; -ms-transform: rotate(-180deg); transform: rotate(-180deg);`
+  seerde.appendChild(arrow)
+  mov = "L";
+  }
+ 
+  else if (mov == "B")
+  {
+  topp = topp + 75;
+  left = left - 100;
+  var seerde = document.querySelector(".seerde")
+  var arrow = document.createElement("IMG")
+  arrow.setAttribute("src","arrow.png")
+  arrow.style.cssText = `position: absolute; top: ${topp}px; left: ${left}px; height:50px; width:150px; -ms-transform: rotate(-180deg); transform: rotate(-180deg);`
+  seerde.appendChild(arrow)
+  mov = "L";
+  }
+  
+  else 
+  {
+  left = left - 150;
+  var seerde = document.querySelector(".seerde")
+  var arrow = document.createElement("IMG")
+  arrow.setAttribute("src","arrow.png")
+  arrow.style.cssText = `position: absolute; top: ${topp}px; left: ${left}px; height:50px; width:150px; -ms-transform: rotate(-180deg); transform: rotate(-180deg);`
+  seerde.appendChild(arrow)
+  mov = "L";
+  }
+
+}
+
+function bArrow()
+  {
+  
+  if (mov == "F")
+  {
+  left = left + 100;
+  topp = topp + 15;
+  var seerde = document.querySelector(".seerde")
+  var arrow = document.createElement("IMG")
+  arrow.setAttribute("src","arrow.png")
+  arrow.style.cssText = `position: absolute; top: ${topp}px; left: ${left}px; height:50px; width:150px; -ms-transform: rotate(900deg); transform: rotate(90deg);`
   seerde.appendChild(arrow)
   mov = "B";
+  }
   
+  else if (mov == "R")
+  {
+  left = left + 75;
+  topp = topp + 75;
+  var seerde = document.querySelector(".seerde")
+  var arrow = document.createElement("IMG")
+  arrow.setAttribute("src","arrow.png")
+  arrow.style.cssText = `position: absolute; top: ${topp}px; left: ${left}px; height:50px; width:150px; -ms-transform: rotate(900deg); transform: rotate(90deg);`
+  seerde.appendChild(arrow)
+  mov = "B";
+  }
+ 
+  else if (mov == "L")
+  {
+  topp = topp + 75;
+  left = left - 75;
+  var seerde = document.querySelector(".seerde")
+  var arrow = document.createElement("IMG")
+  arrow.setAttribute("src","arrow.png")
+  arrow.style.cssText = `position: absolute; top: ${topp}px; left: ${left}px; height:50px; width:150px; -ms-transform: rotate(900deg); transform: rotate(90deg);`
+  seerde.appendChild(arrow)
+  mov = "B";
+  }
+  
+  else 
+  {
+  topp = topp + 175;
+  var seerde = document.querySelector(".seerde")
+  var arrow = document.createElement("IMG")
+  arrow.setAttribute("src","arrow.png")
+  arrow.style.cssText = `position: absolute; top: ${topp}px; left: ${left}px; height:50px; width:150px; -ms-transform: rotate(900deg); transform: rotate(90deg);`
+  seerde.appendChild(arrow)
+  mov = "B";
+  }
 
 }
 

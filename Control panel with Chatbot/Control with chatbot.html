@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<base target="_blank">
+<style>
+
+body{
+   background-color:#FFFAF0;
+
+  }
+
+.Forward .btn {
+  
+  position: absolute;
+  top: 130px;
+  left: 350px;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #FFFFFF;
+  color: black;
+  font-size: 16px;
+  padding: 16px 60px;
+  border: 1px solid black;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+  
+}
+
+.Forward .btn:hover {
+  background-color: green;
+  color: white;
+}
+
+
+
+
+
+.Backward .btn {
+  position: absolute;
+  top: 270px;
+  left: 350px;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #FFFFFF;
+  color: black;
+  font-size: 16px;
+  padding: 16px 60px;
+  border: 1px solid black;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.Backward .btn:hover {
+  background-color: green;
+  color: white;
+}
+
+
+
+.STOP .btn {
+  position: absolute;
+  top: 200px;
+  left: 350px;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #DC143C;
+  color: black;
+  font-size: 16px;
+  padding: 16px 70px;
+  border: 2px solid black;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.STOP .btn:hover {
+  background-color: green;
+  color: white;
+}
+
+
+
+
+.Right .btn {
+  position: absolute;
+  top: 200px;
+  left: 550px;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #FFFFFF;
+  color: black;
+  font-size: 16px;
+  padding: 16px 70px;
+  border: 1px solid black;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.Right .btn:hover {
+  background-color: green;
+  color: white;
+}
+
+
+
+
+.Left .btn {
+  position: absolute;
+  top: 200px;
+  left: 150px;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #FFFFFF;
+  color: black;
+  font-size: 16px;
+  padding: 16px 70px;
+  border: 1px solid black;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.Left .btn:hover {
+  background-color: green;
+  color: white;
+}
+
+
+.Frame {
+ position: absolute;
+ top: 25px;
+ left: 700px;
+ hight:400px
+ width: 300px;
+}
+
+.img1 {
+ position: absolute;
+ top: 490px;
+ left: 650px;
+}
+
+
+
+
+</style>
+
+
+<body>
+
+<div class="Frame">
+<iframe src="https://web-chat.global.assistant.watson.cloud.ibm.com/preview.html?region=eu-gb&integrationID=07dc3770-daa2-49fe-8c68-6
+5ed6d6f0600&serviceInstanceID=5205511c-3008-4e17-a010-cca5bcff93f7" name="iframe_a" height="600px" width="550px" frameBorder="0"></iframe>
+</div>
+
+
+<p id="demo"></p>
+
+<div class="img1">
+<img src="robot1.png" width="200" height="100">
+</div>
+
+
+
+
+<form action="control.php" method="post">
+<div class="Forward">
+  <button  name="F" class="btn"> Forward </button>  
+</div>
+</form>
+
+
+<form action="control.php" method="post">
+<div class="Backward">
+  <button  name="B" class="btn">Backward</button>
+</div>
+</form>
+
+<form action="control.php" method="post">
+<div class="STOP">
+  <button  name="S" class="btn" >STOP</button>
+</div>
+</form>
+
+<form action="control.php" method="post">
+<div class="Right">
+  <button  name="R" class="btn">Right</button>
+</div>
+</form>
+
+<form action="control.php" method="post">
+<div class="Left">
+  <button name="L" class="btn">Left</button>
+</div>
+</form>
+
+
+
+<script>
+
+</script>
+
+</body>
+</html>
